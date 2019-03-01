@@ -1,40 +1,32 @@
-
-
+#include <unistd.h>
 #include <stdio.h>
-#include <string.h>
-#include "concat.h"
+#include <fcntl.h>
+#include <ctype.h>
+#include <sys/types.h>
+#include <sys/param.h>
+#include <sys/stat.h>
+#include <stdlib.h>
 
+#include <stdarg.h>
 
+#define SIZE 100
 
-int main(int argc, const char * argv[])
-{
+char * concat (char * format , ...){
+    // allocating some size for the answer
+    // we are going to return this variable
+    char * ans = (char * ) malloc(sizeof(char) * SIZE);
 
-	concat(argc, argv);
+    va_list list; // this is the list of arguments that have been
+                  // passed to this function . in our example
+                  // 12 and "Hello" are in here
+
+    va_start(list, format);
+    vsnprintf(ans, sizeof(char) * SIZE, format, list);
+    // vsnprintf function is like sprintf function , it copies the
+    // arguemnts in list variable , and put them in the first
+    // arguemnt ( in our example , the ans)
+    va_end(list);
+
+    return ans ;
+
 }
-/*
-
-#include <stdio.h>
-#include <string.h>
-
-int main(int argc, const char * argv[])
-{
-  // Define a temporary variable
-   char example[1000];
-   int i;
-    Copy the first string into the variable
-
-  for (i = 0; i < argc; i++)
-  {
-     //printf("%s ", argv[i]);
-  	strcat(example,argv[i]);
-  }
-    Concatenate the following two strings to the end of the first one
-  // strcat(example, "is over 10 ");
-  // strcat(example, "years old.");
-
-  Display the concatenated strings
-   printf("%s\n", example);
-   //printf("%s\n ", argv[i]);
-   return 0;
-}
-*/
