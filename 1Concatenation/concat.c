@@ -1,6 +1,5 @@
 #include "concat.h"
-
-
+#define SIZE 100
 char * concat (char * format , ...){
     // allocating some size for the answer
     // we are going to return this variable
@@ -14,7 +13,7 @@ char * concat (char * format , ...){
     vsnprintf(ans, sizeof(char) * SIZE, format, list);
     // vsnprintf function is like sprintf function , it copies the
     // arguemnts in list variable , and put them in the first
-    // arguemnt ( in our example , the ans)
+    // argument ( in our example , the ans)
     va_end(list);
 
     return ans ;
