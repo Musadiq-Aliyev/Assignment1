@@ -24,3 +24,9 @@ void fwdstdout(char *path){
 
 
 }
+
+
+int main(){
+    fwdstdout("q3out.txt");
+    printf("Hello world!\n");
+}
