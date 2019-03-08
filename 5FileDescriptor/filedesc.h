@@ -1,0 +1,2 @@
+
+int fdinfo(int fd);

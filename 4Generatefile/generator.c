@@ -7,7 +7,7 @@
 #include <sys/stat.h>
 #include <stdlib.h>
 int main(int  argc, char *argv[])
-{
+{   int zero=0;
     int fd;
     char *file_name;
     off_t size;
@@ -21,15 +21,25 @@ int main(int  argc, char *argv[])
 
     file_name = argv[1];
     size = atoi(argv[2]);
-    mode = S_IWUSR | S_IWGRP | S_IWOTH;
+    //mode = S_IWUSR | S_IWGRP | S_IWOTH;
 
-    fd = creat(file_name, mode);
+   // fd = creat(file_name, mode);
+      if ((fd = open (file_name,O_WRONLY | O_CREAT | O_EXCL, 0666)) < 0)
+    {
+        perror("File error");
+        
+    }
+      if (lseek(fd, size, SEEK_SET) == -1)
+    {
+        perror("Lseek error");
        
-    lseek(fd, size, SEEK_SET); 
-    write(fd, "", 1); 
+    }  
+   
+    //lseek(fd, size, SEEK_SET); 
+    write(fd,&zero, 1); 
     
 
-    //close(fd);
+    close(fd);
    
     return 0;
 }

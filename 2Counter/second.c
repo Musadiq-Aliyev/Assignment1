@@ -20,6 +20,7 @@ int main(int  argc, char *argv[])
         exit(-1);
     }
 
+
     file_name = argv[1];
 
     fd = open(file_name, O_RDONLY);

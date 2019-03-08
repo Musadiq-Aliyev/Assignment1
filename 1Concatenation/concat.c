@@ -13,9 +13,10 @@ char * concat (char * format , ...){
     vsnprintf(ans, sizeof(char) * SIZE, format, list);
     // vsnprintf function is like sprintf function , it copies the
     // arguemnts in list variable , and put them in the first
-    // argument ( in our example , the ans)
+    // arguemnt ( in our example , the ans)
     va_end(list);
 
     return ans ;
 
 }
+
